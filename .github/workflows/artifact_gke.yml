@@ -24,6 +24,17 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
+    - name: Debug Secrets
+      run: |
+        echo "PROJECT_ID=${{ env.PROJECT_ID }}"
+        echo "Checking if secret is set..."
+        if [[ -z "${{ secrets.GKE_SA_KEY }}" ]]; then
+          echo "GKE_SA_KEY is missing!"
+          exit 1
+        else
+          echo "GKE_SA_KEY is set!"
+        fi
+
     # Setup gcloud CLI
     - id: 'auth'
       uses: 'google-github-actions/auth@v2'
