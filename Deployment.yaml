@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: web-app
-        image: us-east1-docker.pkg.dev/assignmentweek1/testrepo/blueimage:latest
+        image: IMAGE_PLACEHOLDER
         ports:
         - containerPort: 80
