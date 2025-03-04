@@ -73,6 +73,5 @@ jobs:
     - name: Deploy
       run: |-
         kubectl apply -f Deployment.yaml
-        kubectl scale --replicas=0 -f Deployment.yaml
-        kubectl scale --replicas=2 -f Deployment.yaml
+        kubectl rollout restart deployment blue-deployment
         kubectl get pods
