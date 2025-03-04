@@ -26,13 +26,12 @@ jobs:
 
     - name: Debug Secrets
       run: |
-        echo "PROJECT_ID=${{ env.PROJECT_ID }}"
-        echo "Checking if secret is set..."
         if [[ -z "${{ secrets.GKE_SA_KEY }}" ]]; then
-          echo "GKE_SA_KEY is missing!"
+          echo "GKE_SA_KEY is missing or empty!"
           exit 1
         else
-          echo "GKE_SA_KEY is set!"
+          echo "GKE_SA_KEY is present!"
+          echo '${{ secrets.GKE_SA_KEY }}' | jq . || echo "Invalid JSON format!"
         fi
 
     # Setup gcloud CLI
